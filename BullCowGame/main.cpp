@@ -10,7 +10,14 @@ string getAndPrintGuess();
 int main() {
 	
 	printIntro();
-	getAndPrintGuess();
+	constexpr int NUMBER_OF_TURNS = 5;
+
+	// loop through number of turns, getting guesses
+	for (int count = 1; count <= NUMBER_OF_TURNS; count++) {
+
+		getAndPrintGuess();
+		cout << endl;
+	}
 
 	return 0;
 }
@@ -33,11 +40,6 @@ string getAndPrintGuess() {
 
 	std::getline(std::cin, guess);
 	// repeat the guess to the player
-	cout << "You guessed " << guess << "\n";
-	cout << "What is your guess?\n";
-
-	std::getline(std::cin, guess);
-
 	cout << "You guessed " << guess << "\n";
 
 	return guess;
