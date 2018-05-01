@@ -4,21 +4,25 @@
 using namespace std;
 
 void printIntro();
-void PlayGame();
+void playGame();
 string getGuess();
 void printGuess(string);
+bool askToPlayAgain();
 
 // Entry point for app
 int main() {
 	
 	printIntro();
 
-	PlayGame();
+	do {
+		playGame();
+	} 
+	while (askToPlayAgain() == 1);
 
 	return 0;
 }
 
-void PlayGame()
+void playGame()
 {
 	// loop through number of turns, getting gueses
 	constexpr int NUMBER_OF_TURNS = 5;
@@ -55,4 +59,15 @@ string getGuess() {
 void printGuess(string guess) {
 
 	cout << "You guessed " << guess << "\n";
+}
+
+
+bool askToPlayAgain() {
+
+	cout << "Do you want to play again (y/n)";
+	string response = "";
+	getline(cin, response);
+
+	return (response[0] == 'y' || response[0] == 'Y');
+
 }
