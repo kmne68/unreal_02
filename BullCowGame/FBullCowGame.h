@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class FBullCowGame {
 
@@ -11,6 +12,7 @@ private:
 	int myMaxTries();
 	int getCurrentTry();
 	bool isGameWon();
-	//bool checkGuessValidity(string);
+	bool checkGuessValidity(std::
+		string);
 
 };
