@@ -7,22 +7,12 @@ void FBullCowGame::reset()
 
 int FBullCowGame::getMaxTries()
 {
-	return 0;
-}
-
-int FBullCowGame::myCurrentTry()
-{
-	return 0;
-}
-
-int FBullCowGame::myMaxTries()
-{
-	return 0;
+	return myMaxTries;
 }
 
 int FBullCowGame::getCurrentTry()
 {
-	return 0;
+	return myCurrentTry;
 }
 
 bool FBullCowGame::isGameWon()
