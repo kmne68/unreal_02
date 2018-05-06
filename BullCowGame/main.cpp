@@ -11,32 +11,39 @@ bool askToPlayAgain();
 FBullCowGame BCGame;
 
 // Entry point for app
-int main() {
+int main() {	
 	
-	printIntro();
-
+	bool bPlayAgain = false;
 	do {
+		
+		printIntro();
 		playGame();
+		bPlayAgain = askToPlayAgain();
 	} 
-	while (askToPlayAgain() == 1);
+	while (bPlayAgain);
 
 	return 0;
 }
 
 void playGame()
 {
+	BCGame.reset();
 	int MaxTries = BCGame.getMaxTries();
 
-	std::cout << MaxTries << std::endl;
-
 	// loop through number of turns, getting gueses
+	// TODO change from FOR to WHILE loop once we are validating tries
+
 	constexpr int NUMBER_OF_TURNS = 5;
 	for (int count = 1; count <= NUMBER_OF_TURNS; count++) {
 
-		std::string guess = getGuess();
+		std::string guess = getGuess(); // TODO make loop check for valid guesses
+		
+		// submit valid guess to game
+		// print number of bulls and cows
 		std::cout << "You guessed " << guess;
 		std::cout << std::endl;
 	}
+	// TODO add a game summary
 }
 
 void printIntro() {
@@ -63,6 +70,7 @@ std::string getGuess() {
 
 	return guess;
 }
+
 
 
 void printGuess(std::string guess) {
