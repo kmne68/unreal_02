@@ -1,16 +1,25 @@
+/*
+This is the console executable that makes use of the BullCow Class. This
+acts as the view in an MVC pattern, and is responsible for user interaction.
+For game logic, see the FBullCowGame class.
+*/
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+using FText = std::string;
+using int32 = int;
+
 void printIntro();
 void playGame();
-std::string getGuess();
-void printGuess(std::string);
+FText getGuess();
+void printGuess(FText);
 bool askToPlayAgain();
 
 FBullCowGame BCGame;
 
-// Entry point for app
+// Entry point for app, acting as the View in the MVC pattern
 int main() {	
 	
 	bool bPlayAgain = false;
@@ -33,10 +42,10 @@ void playGame()
 	// loop through number of turns, getting gueses
 	// TODO change from FOR to WHILE loop once we are validating tries
 
-	constexpr int NUMBER_OF_TURNS = 5;
-	for (int count = 1; count <= NUMBER_OF_TURNS; count++) {
+	constexpr int32 NUMBER_OF_TURNS = 5;
+	for (int32 count = 1; count <= NUMBER_OF_TURNS; count++) {
 
-		std::string guess = getGuess(); // TODO make loop check for valid guesses
+		FText guess = getGuess(); // TODO make loop check for valid guesses
 		
 		// submit valid guess to game
 		// print number of bulls and cows
@@ -48,7 +57,7 @@ void playGame()
 
 void printIntro() {
 	// introduce the game
-	constexpr int WORD_LENGTH = 5;
+	constexpr int32 WORD_LENGTH = 5;
 	std::cout << WORD_LENGTH;
 	std::cout << "Welcome to Bulls and Cows\n";
 	std::cout << "Can you guess the ";
@@ -58,11 +67,11 @@ void printIntro() {
 
 
 // get a guess from the user
-std::string getGuess() {
+FText getGuess() {
 	
-	int currentTry = BCGame.getCurrentTry();
+	int32 currentTry = BCGame.getCurrentTry();
 
-	std::string guess = "";
+	FText guess = "";
 	std::cout << "Try " << currentTry << ". Enter your guess:\n";
 
 	std::getline(std::cin, guess);
@@ -73,7 +82,7 @@ std::string getGuess() {
 
 
 
-void printGuess(std::string guess) {
+void printGuess(FText guess) {
 
 	std::cout << "You guessed " << guess << "\n";
 }
@@ -82,7 +91,7 @@ void printGuess(std::string guess) {
 bool askToPlayAgain() {
 
 	std::cout << "Do you want to play again (y/n)";
-	std::string response = "";
+	FText response = "";
 	getline(std::cin, response);
 
 	return (response[0] == 'y' || response[0] == 'Y');
