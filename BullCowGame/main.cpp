@@ -60,10 +60,8 @@ void playGame()
 
 void printIntro() {
 	// introduce the game
-	constexpr int32 WORD_LENGTH = 5;
-	std::cout << WORD_LENGTH;
 	std::cout << "Welcome to Bulls and Cows\n";
-	std::cout << "Can you guess the ";
+	std::cout << "Can you guess the " << BCGame.getHiddenWordLength();
 	std::cout << "-letter I'm thinking of?\n";
 	return;
 }

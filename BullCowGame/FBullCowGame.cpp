@@ -11,9 +11,9 @@ FBullCowGame::FBullCowGame() {
 void FBullCowGame::reset() {
 
 	constexpr int32 MAX_TRIES = 8;
-	int32 myMaxTries = MAX_TRIES;
+	const FString HIDDEN_WORD = "planet";
 
-	const FString HIDDEN_WORD = "ant";
+	int32 myMaxTries = MAX_TRIES;	
 	myHiddenWord = HIDDEN_WORD;
 	int32	myCurrentTry = 1;
 	return;
@@ -59,10 +59,15 @@ int32 FBullCowGame::getMaxTries() const {
 	return myCurrentTry;
 }
 
+ int32 FBullCowGame::getHiddenWordLength() const
+ {
+	 return myHiddenWord.length();
+ }
+
 bool FBullCowGame::isGameWon() const {
 	return false;
 }
 
-bool FBullCowGame::checkGuessValidity(FString) {
-	return false;
+EWordStatus FBullCowGame::checkGuessValidity(FString) const {
+	return EWordStatus::OK;		// TODO make actual error
 }
