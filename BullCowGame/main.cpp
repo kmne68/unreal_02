@@ -47,6 +47,7 @@ void playGame()
 
 		FText guess = getGuess(); // TODO make loop check for valid guesses
 		
+		EGuessStatus status = BCGame.checkGuessValidity(guess);
 		// submit valid guess to game and receive counts
 		FBullCowCount bullCowCount = BCGame.SubmitGuess(guess);
 
@@ -57,6 +58,8 @@ void playGame()
 	}
 	// TODO add a game summary
 }
+
+// TODO change to make valid guess
 
 void printIntro() {
 	// introduce the game
