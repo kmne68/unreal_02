@@ -23,7 +23,6 @@ enum class EGuessStatus {
 class FBullCowGame {
 
 public:
-
 	FBullCowGame(); // constructor
 
 	int32 getMaxTries() const;
@@ -35,7 +34,7 @@ public:
 	void reset(); // TODO add a meaningful return value
 
 	// counts bulls and cows and increments turn number
-	FBullCowCount SubmitGuess(FString);
+	FBullCowCount SubmitValidGuess(FString);
 
 private:
 	// set in constructor
