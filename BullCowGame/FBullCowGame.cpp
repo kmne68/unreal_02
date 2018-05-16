@@ -1,21 +1,26 @@
 #include "FBullCowGame.h"
+#include <iostream>
 
 using FText = std::string;
 using int32 = int;
 
-FBullCowGame::FBullCowGame() {
+FBullCowGame::FBullCowGame() { reset(); }
 
-	reset();
-}
+int32 FBullCowGame::getMaxTries() const { return  myMaxTries; }
+int32 FBullCowGame::getCurrentTry() const { return myCurrentTry; }
+int32 FBullCowGame::getHiddenWordLength() const { return myHiddenWord.length(); }
+bool FBullCowGame::isGameWon() const { return bGameIsWon; }
 
 void FBullCowGame::reset() {
-
+	
 	constexpr int32 MAX_TRIES = 8;
 	const FString HIDDEN_WORD = "planet";
 
-	int32 myMaxTries = MAX_TRIES;	
+
+	myMaxTries = MAX_TRIES;
 	myHiddenWord = HIDDEN_WORD;
-	int32	myCurrentTry = 1;
+	int32 myCurrentTry = 1;
+	bGameIsWon = false;
 	return;
 }
 
@@ -44,30 +49,19 @@ FBullCowCount FBullCowGame::SubmitValidGuess(FString guess)
 			}
 		}
 	}
+	if (bullCowCount.Bulls == wordLength) {
+		bGameIsWon = true;
+	}
+	else {
+		bGameIsWon = false;
+	}
 	return bullCowCount;
 }
 
-int32 FBullCowGame::getMaxTries() const {
-	return myMaxTries;
-}
-
- int32 FBullCowGame::getCurrentTry() const {
-	return myCurrentTry;
-}
-
- int32 FBullCowGame::getHiddenWordLength() const
- {
-	 return myHiddenWord.length();
- }
-
-bool FBullCowGame::isGameWon() const {
-	return false;
-}
 
 EGuessStatus FBullCowGame::checkGuessValidity(FString guess) const {
 
-	// if guess isn't an isogram
-		// return an error
+	// if guess isn't an isogram return an error
 	if (false) {
 		return EGuessStatus::Not_Isogram;
 	}

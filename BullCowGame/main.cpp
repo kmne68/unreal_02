@@ -36,7 +36,7 @@ int main() {
 
 	// introduce the game
 void printIntro() {
-	std::cout << "Welcome to Bulls and Cows\n";
+	std::cout << "\nWelcome to Bulls and Cows\n";
 	std::cout << "Can you guess the " << BCGame.getHiddenWordLength();
 	std::cout << "-letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
@@ -48,8 +48,8 @@ void playGame()
 	BCGame.reset();
 	int32 maxTries = BCGame.getMaxTries();
 
-	// loop through number of turns, getting gueses
-	for (int32 count = 1; count <= maxTries; count++) { // TODO change from FOR to WHILE loop once we are validating tries
+	// loop through number of turns, getting gueses while the game is not won and tries remain
+	while (!BCGame.isGameWon() && BCGame.getCurrentTry() <= maxTries) {
 		FText guess = getValidGuess();
 
 		// submit valid guess to the game, receive counts
@@ -65,7 +65,6 @@ void playGame()
 
 // loop continually to get a guess from the user
 FText getValidGuess() {
-
 	FText guess = "";
 	EGuessStatus status = EGuessStatus::Invalid_Status;
 	do {
