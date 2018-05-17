@@ -30,7 +30,6 @@ public:
 	int32 getHiddenWordLength() const;
 	bool isGameWon() const;
 	EGuessStatus checkGuessValidity(FString) const; // TODO add a meaningful return value
-
 	void reset(); // TODO add a meaningful return value
 
 	// counts bulls and cows and increments turn number
