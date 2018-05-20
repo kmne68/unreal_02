@@ -31,6 +31,7 @@ public:
 	bool isGameWon() const;
 	EGuessStatus checkGuessValidity(FString) const; // TODO add a meaningful return value
 	void reset(); // TODO add a meaningful return value
+	
 
 	// counts bulls and cows and increments turn number
 	FBullCowCount SubmitValidGuess(FString);
@@ -42,4 +43,5 @@ private:
 	FString myHiddenWord;
 	bool bGameIsWon;
 
+	bool isIsogram(FString) const;
 };
