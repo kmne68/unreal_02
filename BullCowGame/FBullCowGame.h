@@ -44,4 +44,5 @@ private:
 	bool bGameIsWon;
 
 	bool isIsogram(FString) const;
+	bool isLowercase(FString) const;
 };

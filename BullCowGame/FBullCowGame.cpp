@@ -8,10 +8,6 @@ using int32 = int;
 
 FBullCowGame::FBullCowGame() { reset(); }
 
- int32 FBullCowGame::getMaxTries() const { return  myMaxTries; }
-int32 FBullCowGame::getCurrentTry() const { return myCurrentTry; }
-int32 FBullCowGame::getHiddenWordLength() const { return myHiddenWord.length(); }
-bool FBullCowGame::isGameWon() const { return bGameIsWon; }
 
 void FBullCowGame::reset() {
 	
@@ -21,22 +17,51 @@ void FBullCowGame::reset() {
 
 	myMaxTries = MAX_TRIES;
 	myHiddenWord = HIDDEN_WORD;
-	int32 myCurrentTry = 1;
+	myCurrentTry = 1;
 	bGameIsWon = false;
 	return;
 }
 
+
+int32 FBullCowGame::getMaxTries() const { return  myMaxTries; }
+int32 FBullCowGame::getCurrentTry() const { return myCurrentTry; }
+int32 FBullCowGame::getHiddenWordLength() const { return myHiddenWord.length(); }
+bool FBullCowGame::isGameWon() const { return bGameIsWon; }
+
+
 bool FBullCowGame::isIsogram(FString guess) const
 {
 	// treat 0 or 1 letter strings as isograms (return true)
+	if (guess.length() <= 1) { return true; }
+
+	// set up the map
+	TMap<char, bool> letterSeen;
 	// loop through letters in the word
-	// create map of guess
-		// if entry is duplicate
-			// return false
-		// else
-			// return true
+	for (auto letter : guess) {
+		letter = tolower(letter);
+		if (letterSeen[letter]) {
+			return false;
+		}
+		else {
+			letterSeen[letter] = true;
+		}
+
+	}
+
 	return true; // for example if /0 is entered
 }
+
+bool FBullCowGame::isLowercase(FString guess) const
+{
+	for (auto letter : guess) {
+		if (!islower(letter)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
 
 
 // receives a VALID guess and  increments turn and returns count
@@ -79,7 +104,7 @@ EGuessStatus FBullCowGame::checkGuessValidity(FString guess) const {
 	if (!isIsogram(guess)) {
 		return EGuessStatus::Not_Isogram;	// TODO write function
 	}
-	else if (false) {	// if the guess isn't all lowercase
+	else if (!isLowercase(guess)) {	// if the guess isn't all lowercase
 		// return an error
 		return EGuessStatus::Not_Lowercase; // TODO write function
 	}
