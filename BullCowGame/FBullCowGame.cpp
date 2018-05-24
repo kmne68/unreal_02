@@ -1,32 +1,33 @@
 #include "FBullCowGame.h"
-#include <iostream>
+//#include <iostream>
 #include <map>
+
+//using FText = std::string;
+using int32 = int;
 #define TMap std::map
 
-using FText = std::string;
-using int32 = int;
+FBullCowGame::FBullCowGame() { reset(); }	// default constructor
 
-FBullCowGame::FBullCowGame() { reset(); }
+int32 FBullCowGame::getCurrentTry() const { return myCurrentTry; }
+int32 FBullCowGame::getHiddenWordLength() const { return myHiddenWord.length(); }
+bool FBullCowGame::isGameWon() const { return bGameIsWon; }
 
+int32 FBullCowGame::getMaxTries() const { 
+	
+	TMap<int32, int32> wordLengthToMaxTries{ {3,5}, {4,6 }, {5,8}, {6,10}, {7,12} };
+	return  wordLengthToMaxTries[myHiddenWord.length()]; }
 
 void FBullCowGame::reset() {
 	
-	constexpr int32 MAX_TRIES = 8;
+	//constexpr int32 MAX_TRIES = 8;
 	const FString HIDDEN_WORD = "planet";
-
-
-	myMaxTries = MAX_TRIES;
 	myHiddenWord = HIDDEN_WORD;
+	
+	//myMaxTries = MAX_TRIES;
 	myCurrentTry = 1;
 	bGameIsWon = false;
 	return;
 }
-
-
-int32 FBullCowGame::getMaxTries() const { return  myMaxTries; }
-int32 FBullCowGame::getCurrentTry() const { return myCurrentTry; }
-int32 FBullCowGame::getHiddenWordLength() const { return myHiddenWord.length(); }
-bool FBullCowGame::isGameWon() const { return bGameIsWon; }
 
 
 bool FBullCowGame::isIsogram(FString guess) const
@@ -60,7 +61,6 @@ bool FBullCowGame::isLowercase(FString guess) const
 	}
 	return true;
 }
-
 
 
 

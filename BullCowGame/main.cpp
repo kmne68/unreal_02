@@ -128,6 +128,6 @@ void printGameSummary() {
 		std::cout << "Well done! You've won";
 	}
 	else {
-		std::cout << "Sorry, you've lost.";
+		std::cout << "Sorry, you've lost. ";
 	}
 }

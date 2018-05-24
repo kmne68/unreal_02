@@ -39,7 +39,7 @@ public:
 private:
 	// set in constructor
 	int32 myCurrentTry;
-	int32 myMaxTries;
+	// int32 myMaxTries;
 	FString myHiddenWord;
 	bool bGameIsWon;
 
