@@ -8,16 +8,18 @@ For game logic, see the FBullCowGame class.
 #include <string>
 #include "FBullCowGame.h"
 
+// To make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
 
+// Function prototypes as outside a class
 void printIntro();
 void playGame();
 FText getValidGuess();
 bool askToPlayAgain();
 void printGameSummary();
-//void printGuess(FText);
 
+// Instantiate a new game which is reused across playes
 FBullCowGame BCGame;
 
 // Entry point for app, acting as the View in the MVC pattern
@@ -35,7 +37,6 @@ int main() {
 }
 
 
-	// introduce the game
 void printIntro() {
 	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
 	std::cout << std::endl;
@@ -51,6 +52,7 @@ void printIntro() {
 	return;
 }
 
+// Plays a single game to completion
 void playGame()
 {
 	BCGame.reset();
@@ -67,7 +69,6 @@ void playGame()
 		std::cout << "Bulls = " << bullCowCount.Bulls;
 		std::cout << ". Cows = " << bullCowCount.Cows << "\n\n";
 	}
-	// TODO add a game summary
 	printGameSummary();
 	return;
 }
@@ -101,7 +102,6 @@ FText getValidGuess() {
 			// assume the guess is valid
 			break;
 		}
-		// std::cout << std::endl;
 	} while (status != EGuessStatus::OK); // continue loop until no errors occur
 	return guess;
 }
@@ -125,7 +125,7 @@ bool askToPlayAgain() {
 
 void printGameSummary() {
 	if (BCGame.isGameWon()) {
-		std::cout << "Well done! You've won";
+		std::cout << "Well done! You've won. ";
 	}
 	else {
 		std::cout << "Sorry, you've lost. ";

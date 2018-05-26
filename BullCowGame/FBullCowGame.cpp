@@ -1,10 +1,10 @@
+#pragma once
 #include "FBullCowGame.h"
-//#include <iostream>
 #include <map>
 
-//using FText = std::string;
+// to make syntax Unreal friendly
+#define TMap std::map 
 using int32 = int;
-#define TMap std::map
 
 FBullCowGame::FBullCowGame() { reset(); }	// default constructor
 
@@ -19,11 +19,9 @@ int32 FBullCowGame::getMaxTries() const {
 
 void FBullCowGame::reset() {
 	
-	//constexpr int32 MAX_TRIES = 8;
-	const FString HIDDEN_WORD = "planet";
+	const FString HIDDEN_WORD = "planet"; // This must be an isogram
 	myHiddenWord = HIDDEN_WORD;
 	
-	//myMaxTries = MAX_TRIES;
 	myCurrentTry = 1;
 	bGameIsWon = false;
 	return;
@@ -102,21 +100,19 @@ EGuessStatus FBullCowGame::checkGuessValidity(FString guess) const {
 
 	// if guess isn't an isogram return an error
 	if (!isIsogram(guess)) {
-		return EGuessStatus::Not_Isogram;	// TODO write function
+		return EGuessStatus::Not_Isogram;
 	}
-	else if (!isLowercase(guess)) {	// if the guess isn't all lowercase
-		// return an error
-		return EGuessStatus::Not_Lowercase; // TODO write function
+	else if (!isLowercase(guess)) {	
+		// if the guess isn't all lowercase return an error		
+		return EGuessStatus::Not_Lowercase;
 	}
 	else if (guess.length() != getHiddenWordLength()) {
-	// if the guess length is wrong
-		// return an error
+	// if the guess length is wrong return an error
 			return EGuessStatus::Wrong_Length;
 	}
 	else {
-	// otherwise
-		// return OK
+	// otherwise return OK
 	return EGuessStatus::OK;	
 
-	}	// TODO make actual error
+	}
 }
